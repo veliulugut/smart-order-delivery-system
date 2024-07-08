@@ -1,0 +1,9 @@
+{
+    "healthy": "The application is healthy",
+    "unexpected_error": "An unknown error occurred.",
+    "order_already_exists": "The order already exists.",
+    "order_not_found": "Order not found.",
+    "invalid_order_request": "Invalid order request.",
+    "order_created": "Order created successfully.",
+    "order_not_created": "Order could not be created."
+}

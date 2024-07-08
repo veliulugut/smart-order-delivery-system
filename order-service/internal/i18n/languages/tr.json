@@ -1,0 +1,9 @@
+{
+    "healthy": "Uygulama sağlıklı.",
+    "unexpected_error": "Bilinmeyen bir hata oluştu.",
+    "order_already_exists": "Sipariş zaten mevcut.",
+    "order_not_found": "Sipariş bulunamadı.",
+    "invalid_order_request": "Geçersiz sipariş talebi.",
+    "order_created": "Sipariş başarıyla oluşturuldu.",
+    "order_not_created": "Sipariş oluşturulamadı."
+}
