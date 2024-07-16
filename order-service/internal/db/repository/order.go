@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"context"
 	"order-service/internal/db/models"
 
 	"gorm.io/gorm"
@@ -21,13 +22,15 @@ type Order struct {
 	tableName string
 }
 
-func (o *Order) CreateOrder(order *models.Order) error {
-	result := o.dbClient.Table(o.tableName).Create(order)
+func (o *Order) CreateOrder(ctx context.Context, order *models.Order) (*models.Order, error) {
+	db := o.dbClient.WithContext(ctx)
+
+	result := db.Table(o.tableName).Create(order)
 	if result.Error != nil {
-		return result.Error
+		return nil, result.Error
 	}
 
-	return nil
+	return order, nil
 }
 
 func (o *Order) SoftDelete(id int) error {
@@ -53,7 +56,7 @@ func (o *Order) GetOrderById(id int) (*models.Order, error) {
 	return &order, nil
 }
 
-func (o *Order) ListOrders() ([]*models.Order, error) {
+func (o *Order) ListOrders(ctx context.Context) ([]*models.Order, error) {
 	var orders []*models.Order
 
 	result := o.dbClient.Table(o.tableName).Find(&orders)
@@ -64,7 +67,7 @@ func (o *Order) ListOrders() ([]*models.Order, error) {
 	return orders, nil
 }
 
-func (o *Order) UpdateOrder(order *models.Order) error {
+func (o *Order) UpdateOrder(ctx context.Context, order *models.Order) error {
 	result := o.dbClient.Table(o.tableName).Where("id = ?", order.ID).Updates(order)
 	if result.Error != nil {
 		return result.Error
