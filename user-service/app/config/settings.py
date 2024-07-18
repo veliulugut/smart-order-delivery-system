@@ -1,6 +1,6 @@
 import os 
 from functools import lru_cache
-from pydantic_settings import BaseSettings # type: ignore
+from pydantic import BaseSettings
 from pathlib import Path
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
