@@ -18,6 +18,10 @@ class User(Base):
 
      tokens = relationship("UserToken", back_populates="user")
 
+     def get_context_string(self,context:str):
+          return f"{context}{self.password[-6:]}{self.updated_at.strftime('%m%d%Y%H%M%S')}".strip()
+
+
 
 class UserToken(Base):
     __tablename__ = "user_tokens"
